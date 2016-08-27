@@ -37,25 +37,29 @@ router.get('/push', function(req, res, next) {
     var fechaTS = fechaFormat.replace(/-/g,'')
     var corrienteTotal = req.query.cT;
 
-    //
-    // var db = firebase.database();
-    // var ref = db.ref("arduino1/");
-    // var registroRef = ref.child("registros");
-    //
-    // var newRegistroRef = registroRef.push();
-    // newRegistroRef.set({
-    //     corrientea: corrienteA,
-    //     corrienteb: corrienteB,
-    //     corrientec: corrienteC,
-    //     corriented: corrienteD,
-    //     voltajet: voltajeTotal,
-    //     horaTS: horaTS,
-    //     horaFormat: horaFormat,
-    //     fechaTS: fechaTS,
-    //     fechaFormat: fechaFormat,
-    //     corrienteT: corrienteTotal
-    //
-    // });
+
+    var db = firebase.database();
+    var ref = db.ref("arduino1/");
+    var registroRef = ref.child("registros");
+
+    var newRegistroRef = registroRef.push();
+    newRegistroRef.set({
+        corrientea: corrienteA,
+        corrienteb: corrienteB,
+        corrientec: corrienteC,
+        corriented: corrienteD,
+        potenciaa: corrienteA * voltajeTotal,
+        potenciab: corrienteB * voltajeTotal,
+        potenciac: corrienteC * voltajeTotal,
+        potenciad: corrienteD * voltajeTotal,
+        voltajet: voltajeTotal,
+        horaTS: horaTS,
+        horaFormat: horaFormat,
+        fechaTS: fechaTS,
+        fechaFormat: fechaFormat,
+        corrienteT: corrienteTotal
+
+    });
 
 
     console.log("voltaje total = : " + voltajeTotal );
